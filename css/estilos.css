@@ -46,24 +46,9 @@ select {
     font-weight: bold;
 }
 
-button[type="button"] {
-    background-color: #ffa600;
-    color: #fff;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-button[type="button"]:hover {
-    background-color: #c47f00;
-    transform: translateY(-2px);
-}
 
 body.autobot-theme {
-    background-image: url('resources/battle.jpg');
+    background-image: url('/Cuestionario/resources/battle.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
