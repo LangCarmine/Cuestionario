@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>¿A qué facción de Transformers perteneces?</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body class="autobot-theme">
+    <header id="encabezado">
+        
+
+        <h1>{{titulo}}</h1>
+    
+    </header>
+
+
+    <form id="transformersQuiz">
+        
+        <!-- Pregunta 1:-->
+        <p><strong>¿Qué valores consideras más importantes?</strong></p>
+        <input type="radio" name="valores" value="Autobot" v-model="valores_Respuesta"  @change="cambiarEstado1" :disabled="Valores_deshabilitado"> Justicia<br>
+        <input type="radio" name="valores" value="Decepticon" v-model="valores_Respuesta" @change="cambiarEstado1" :disabled="Valores_deshabilitado"> Poder<br>
+        <input type="radio" name="valores" value="Maximal" v-model="valores_Respuesta" @change="cambiarEstado1" :disabled="Valores_deshabilitado"> Lealtad a la naturaleza<br>
+        <input type="radio" name="valores" value="Predacon" v-model="valores_Respuesta" @change="cambiarEstado1" :disabled="Valores_deshabilitado"> Evolución tecnológica<br>
+
+        <p class="miniRespuesta" v-if="valores_Respuesta">Tus valores son dignos de un {{valores_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 2:-->
+        <p><strong>¿Qué planeta preferirias explorar?</strong></p>
+        <input type="radio" name="planeta" value="Decepticon" v-model="planeta_Respuesta" @change="cambiarEstado2" :disabled="planeta_deshabilitado"> Cybertron<br>
+        <input type="radio" name="planeta" value="Autobot" v-model="planeta_Respuesta" @change="cambiarEstado2" :disabled="planeta_deshabilitado"> Tierra<br>
+        <input type="radio" name="planeta" value="Maximal" v-model="planeta_Respuesta" @change="cambiarEstado2" :disabled="planeta_deshabilitado"> Nebulos<br>
+        <input type="radio" name="planeta" value="Predacon" v-model="planeta_Respuesta" @change="cambiarEstado2" :disabled="planeta_deshabilitado"> Caminus<br>
+
+        <p class="miniRespuesta" v-if="planeta_Respuesta">Tampoco tienes muchas opciones mi querido {{planeta_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 3:-->
+        <p><strong>¿Qué tipo de líder admiras más?</strong></p>
+        <input type="radio" name="lider" value="Autobot" v-model="lider_Respuesta" @change="cambiarEstado3" :disabled="lider_deshabilitado"> Protector y justiciero<br>
+        <input type="radio" name="lider" value="Decepticon" v-model="lider_Respuesta" @change="cambiarEstado3" :disabled="lider_deshabilitado"> Calculador y estratega<br>
+        <input type="radio" name="lider" value="Maximal" v-model="lider_Respuesta" @change="cambiarEstado3" :disabled="lider_deshabilitado"> Sabio y en armonía con la naturaleza<br>
+        <input type="radio" name="lider" value="Predacon" v-model="lider_Respuesta" @change="cambiarEstado3" :disabled="lider_deshabilitado"> Guerrillero y adaptable<br>
+
+        <p class="miniRespuesta" v-if="lider_Respuesta">Eso es de {{lider_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 4:-->
+        <p><strong>¿Cuál prefieres?</strong></p>
+        <input type="radio" name="vehiculo" value="Autobot" v-model="vehiculo_Respuesta" @change="cambiarEstado4" :disabled="vehiculo_deshabilitado"> Camioneta<br>
+        <input type="radio" name="vehiculo" value="Decepticon" v-model="vehiculo_Respuesta" @change="cambiarEstado4" :disabled="vehiculo_deshabilitado"> Jet<br>
+        <input type="radio" name="vehiculo" value="Maximal" v-model="vehiculo_Respuesta" @change="cambiarEstado4" :disabled="vehiculo_deshabilitado"> Cheetah<br>
+        <input type="radio" name="vehiculo" value="Predacon" v-model="vehiculo_Respuesta" @change="cambiarEstado4" :disabled="vehiculo_deshabilitado"> Dragon<br>
+
+        <p class="miniRespuesta" v-if="vehiculo_Respuesta">Obvio que eres un {{vehiculo_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 5:-->
+        <p><strong>¿Qué tan importante es la cooperación para ti?</strong></p>
+        <input type="radio" name="cooperacion" value="Decepticon" v-model="cooperacion_Respuesta" @change="cambiarEstado5" :disabled="cooperacion_deshabilitado"> Poco importante<br>
+        <input type="radio" name="cooperacion" value="Predacon" v-model="cooperacion_Respuesta" @change="cambiarEstado5" :disabled="cooperacion_deshabilitado"> Moderadamente importante<br>
+        <input type="radio" name="cooperacion" value="Maximal" v-model="cooperacion_Respuesta" @change="cambiarEstado5" :disabled="cooperacion_deshabilitado"> Importante<br>
+        <input type="radio" name="cooperacion" value="Autobot" v-model="cooperacion_Respuesta" @change="cambiarEstado5" :disabled="cooperacion_deshabilitado"> Muy importante<br>
+
+        <p class="miniRespuesta" v-if="cooperacion_Respuesta">Clasico {{cooperacion_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 6:-->
+        <p><strong>¿Qué habilidades valoras más en combate?</strong></p>
+        <input type="radio" name="habilidades" value="Decepticon" v-model="habilidades_Respuesta" @change="cambiarEstado6" :disabled="habilidades_deshabilitado"> Fuerza física<br>
+        <input type="radio" name="habilidades" value="Autobot" v-model="habilidades_Respuesta" @change="cambiarEstado6" :disabled="habilidades_deshabilitado"> Inteligencia<br>
+        <input type="radio" name="habilidades" value="Maximal" v-model="habilidades_Respuesta" @change="cambiarEstado6" :disabled="habilidades_deshabilitado"> Velocidad<br>
+        <input type="radio" name="habilidades" value="Predacon" v-model="habilidades_Respuesta" @change="cambiarEstado6" :disabled="habilidades_deshabilitado"> Adaptabilidad<br>
+
+        <p class="miniRespuesta" v-if="habilidades_Respuesta">La habilidad que valoras es tipica en un {{habilidades_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 7:-->
+        <p><strong>¿Qué tipo de transformación preferirías tener?</strong></p>
+        <select name="transformacion" v-model="transformacion_Respuesta" @change="cambiarEstado7" :disabled="transformacion_deshabilitado">
+            <option value="Autobot" >Vehículo terrestre</option>
+            <option value="Decepticon" >Vehículo aéreo</option>
+            <option value="Maximal" >Animal</option>
+            <option value="Predacon" >Bestia</option>
+        </select>
+
+        <p class="miniRespuesta" v-if="transformacion_Respuesta">Transformación tipica de un {{transformacion_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 8:-->
+        <p><strong>En una misión difícil, ¿qué rol prefieres asumir?</strong></p>
+        <input type="radio" name="rol" value="Autobot" v-model="rol_Respuesta" @change="cambiarEstado8" :disabled="rol_deshabilitado"> Líder<br>
+        <input type="radio" name="rol" value="Predacon" v-model="rol_Respuesta" @change="cambiarEstado8" :disabled="rol_deshabilitado"> Estratega<br>
+        <input type="radio" name="rol" value="Maximal" v-model="rol_Respuesta" @change="cambiarEstado8" :disabled="rol_deshabilitado"> Explorador<br>
+        <input type="radio" name="rol" value="Decepticon" v-model="rol_Respuesta" @change="cambiarEstado8" :disabled="rol_deshabilitado"> Guerrero de primera línea<br>
+
+        <p class="miniRespuesta" v-if="rol_Respuesta">Tu rol es muy {{rol_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 9:-->
+        <p><strong>¿Qué color se identifica más contigo?</strong></p>
+        <input type="radio" name="color" value="Autobot" v-model="color_Respuesta" @change="cambiarEstado9" :disabled="color_deshabilitado"> Rojo<br>
+        <input type="radio" name="color" value="Predacon" v-model="color_Respuesta" @change="cambiarEstado9" :disabled="color_deshabilitado"> Azul<br>
+        <input type="radio" name="color" value="Decepticon" v-model="color_Respuesta" @change="cambiarEstado9" :disabled="color_deshabilitado"> Morado<br>
+        <input type="radio" name="color" value="Maximal" v-model="color_Respuesta" @change="cambiarEstado9" :disabled="color_deshabilitado"> Verde<br>
+        
+        <p class="miniRespuesta" v-if="color_Respuesta">Tu color es digno de un {{color_Respuesta}}</p>
+        <br>
+
+        <!-- Pregunta 10:-->
+        <p><strong>¿Cuál lema prefieres?</strong></p>
+        <input type="radio" name="lema" value="Autobot" v-model="lema_Respuesta" @change="cambiarEstado10" :disabled="lema_deshabilitado"> Hasta que todos seamos uno.<br>
+        <input type="radio" name="lema" value="Decepticon" v-model="lema_Respuesta" @change="cambiarEstado10" :disabled="lema_deshabilitado"> La fuerza por encima de uno.<br>
+        <input type="radio" name="lema" value="Maximal" v-model="lema_Respuesta" @change="cambiarEstado10" :disabled="lema_deshabilitado"> Protejamos el equilibrio natural.<br>
+        <input type="radio" name="lema" value="Predacon" v-model="lema_Respuesta" @change="cambiarEstado10" :disabled="lema_deshabilitado"> Evolucionar o morir.<br>
+        
+        <p class="miniRespuesta" v-if="lema_Respuesta">El lema es digno de un {{lema_Respuesta}}</p>
+        <br>
+
+        <br>
+        <!--Mostrar respuesta final-->
+
+        <div id="app">
+            <h1>{{ titulo }}</h1>
+            <p>Resultado: {{ resultadoFinal }}</p>
+            <img id="logo" :src="imagen" :alt="alterno" v-if="resultadoFinal">
+            <p :class="resultadoFinal" v-if="resultadoFinal">{{desc}}</p>
+            <p :class="resultadoFinal" v-if="resultadoFinal">{{principios}}</p>
+            <p :class="resultadoFinal" v-if="resultadoFinal">{{altmode}}</p>
+            <p :class="resultadoFinal" v-if="resultadoFinal">{{lema}}</p>
+        </div>
+
+
+        
+
+
+    </form>
+    
+</body>
+<script src="js/script.js"></script>
+
+<script>
+    const mountedApp=ap1.mount('#encabezado');
+    const mountedApp2=ap2.mount('#transformersQuiz');
+
+    
+  </script>
+</html>
